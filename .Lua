@@ -23,7 +23,7 @@ local Window = ArrayField:CreateWindow({
                 [1] = {
                     Text = 'Click here to copy the key link',
                     OnPress = function()
-                    setclipboard('https://www.youtube.com/watch?v=xf79hC3x0eg&t=20s&ab_channel=Renz')
+                    setclipboard('https://www.youtube.com/watch?v=0m-OAn4LfQU&ab_channel=PleIrin')
                     end,
                 }
             },
@@ -64,7 +64,7 @@ _G.Farm = F
                 end
             
                 local distance = (targetPosition - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                local speed = 330 -- Adjust speed as desired
+                local speed = 260 -- Adjust speed as desired
                 local duration = distance / speed
             
                 local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear)
@@ -77,17 +77,14 @@ _G.Farm = F
             
                 tween.Completed:Connect(function()
                     currentTargetIndex += 1
-            
-                    if currentTargetIndex <= #targetPositions then
-                        teleportToNextTarget()
-                    else
-                        print("Reached all target positions!")
-                        currentTargetIndex = 1 -- Reset index for loop
-                        wait(22) -- Wait 18 seconds before restarting
-                        teleportToNextTarget() -- Restart the loop
-                    end
-                end)
-            end
+                    teleportToNextTarget()
+                        game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
+                            wait(5) -- Wait for death animation to finish
+                            currentTargetIndex = 1 -- Reset index to teleport back to the first position
+                            teleportToNextTarget() -- Restart the loop
+                        end)
+                    end)
+                end
             teleportToNextTarget() -- Start the loop
         do 
             local NM = game:GetService("Workspace"):FindFirstChild("Noclip")
@@ -232,7 +229,7 @@ local Slider = Tab:CreateSlider({
     Name = "Player Speed",
     Range = {0, 300},
     Increment = 5,
-    Suffix = "Bananas",
+    Suffix = "",
     CurrentValue = 25,
     Flag = "Slider1",
     Callback = function(S)
@@ -243,7 +240,7 @@ local Slider = Tab:CreateSlider({
     Name = "Jump Power",
     Range = {0, 300},
     Increment = 5,
-    Suffix = "Bananas",
+    Suffix = "",
     CurrentValue = 25,
     Flag = "Slider1",
     Callback = function(J)
