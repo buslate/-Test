@@ -126,7 +126,7 @@ Toggle:OnChanged(function(Value)
                     end
                 
                     local distance = (targetPosition - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                    local speed = 4100 -- Adjust speed as desired
+                    local speed = 3000 -- Adjust speed as desired
                     local duration = distance / speed
                 
                     local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear)
