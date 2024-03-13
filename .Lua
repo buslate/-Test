@@ -26,8 +26,8 @@ local Options = Fluent.Options
 do
     Fluent:Notify({
         Title = "Notification",
-        Content = "Wellcome",
-        SubContent = "Cave Hub NO.1", -- Optional
+        Content = "Cave Hub NO.1",
+        SubContent = "", -- Optional
         Duration = 10 -- Set to nil to make the notification not disappear
     })
 end
