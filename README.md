@@ -6,7 +6,7 @@ UPDATE 0.0.3 : Remove FastFarm,Add AutoFarm GoldBox
 
 UPDATE 0.0.4 : Change UI Toggle
 
-IPDATE 0.0.5 : Add FpsBoots🚀,FixBug
+UPDATE 0.0.5 : Add FpsBoots🚀,FixBug
 
 ![Screenshot 2024-03-13 150613](https://github.com/buslate/Build-A-Boat-For-Treasure/assets/113223653/387f928c-7716-4c1c-a194-8ae89da5c14e)
 
