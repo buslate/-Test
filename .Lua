@@ -5,12 +5,12 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Cave Hub 0.0.3",
+    Title = "Cave Hub 0.0.4",
     SubTitle = "by ! Chuck : chuck_007.",
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Light",
+    Theme = "Dark",
     MinimizeKey = Enum.KeyCode.Home -- Used when theres no MinimizeKeybind
 })
 
@@ -248,7 +248,7 @@ Tabs.Settings:AddButton({
 --PlayerSpeed
 
 local Slider = Tabs.Settings:AddSlider("Slider", {
-    Title = "Player Speed",
+    Title = "Seed",
     Description = "",
     Default = 16,
     Min = 16,
@@ -479,41 +479,36 @@ end)
 
 Options.MyToggle:SetValue(false)
 
-
---ui Toggle
+--uitoggle
 
 do
-    local ToggleUI = game.CoreGui:FindFirstChild("toggle") 
+    local ToggleUI = game.CoreGui:FindFirstChild("MyToggle") 
     if ToggleUI then 
-        ToggleUI:Destroy()
+    ToggleUI:Destroy() 
     end
 end
-local toggle = Instance.new("ScreenGui")
-local Toggle1 = Instance.new("TextButton")
+
+local MyToggle = Instance.new("ScreenGui")
+local ImageButton = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 
+--Properties:
 
+MyToggle.Name = "MyToggle"
+MyToggle.Parent = game.CoreGui
+MyToggle.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-toggle.Name = "toggle"
-toggle.Parent = game.CoreGui
-toggle.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-
-Toggle1.Name = "Toggle1"
-Toggle1.Parent = toggle
-Toggle1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Toggle1.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Toggle1.BorderSizePixel = 0
-Toggle1.Position = UDim2.new(0.158999994, 0, -0.0560000017, 0)
-Toggle1.Size = UDim2.new(0, 62, 0, 42)
-Toggle1.Font = Enum.Font.SourceSans
-Toggle1.Text = "Open/Close"
-Toggle1.TextColor3 = Color3.fromRGB(0, 0, 0)
-Toggle1.TextSize = 15.000
-
-Toggle1.MouseButton1Click:Connect(function ()
+ImageButton.Parent = MyToggle
+ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ImageButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ImageButton.BorderSizePixel = 0
+ImageButton.Position = UDim2.new(0.156000003, 0, -0, 0)
+ImageButton.Size = UDim2.new(0, 50, 0, 50)
+ImageButton.Image = "rbxassetid://16731758728"
+ImageButton.MouseButton1Click:Connect(function()
 game.CoreGui:FindFirstChild("ScreenGui").Enabled = not game.CoreGui:FindFirstChild("ScreenGui").Enabled
 end)
 
 
 UICorner.CornerRadius = UDim.new(0, 10)
-UICorner.Parent = Toggle1
+UICorner.Parent = ImageButton
