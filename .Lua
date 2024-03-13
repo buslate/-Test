@@ -10,7 +10,7 @@ local Window = Fluent:CreateWindow({
     TabWidth = 160,
     Size = UDim2.fromOffset(580, 460),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Dark",
+    Theme = "Darker",
     MinimizeKey = Enum.KeyCode.Home -- Used when theres no MinimizeKeybind
 })
 
@@ -149,7 +149,7 @@ Toggle:OnChanged(function(Value)
                     end
                 teleportToNextTarget() -- Start the loop
                 workspace:WaitForChild("ClaimRiverResultsGold"):FireServer()
-                wait(25)
+                wait(30)
                 end
     end
 end)
@@ -188,6 +188,23 @@ Options.MyToggle:SetValue(false)
 
 --Setting
 
+--rejoin
+
+Tabs.Settings:AddButton({
+    Title = "Rejoin Server",
+    Description = "Rejoin",
+    Callback = function()
+        local ts = game:GetService("TeleportService")
+
+        local p = game:GetService("Players").LocalPlayer
+        
+         
+        
+        ts:Teleport(game.PlaceId, p)
+    end
+})
+
+
 -- Addons:
 -- SaveManager (Allows you to have a configuration system)
 -- InterfaceManager (Allows you to have a interface managment system)
@@ -224,26 +241,6 @@ Fluent:Notify({
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
 
-Tabs.Settings:AddParagraph({
-    Title = "Misc",
-    Content = "Enjoy!"
-})
-
---rejoin
-
-Tabs.Settings:AddButton({
-    Title = "Rejoin Server",
-    Description = "Rejoin",
-    Callback = function()
-        local ts = game:GetService("TeleportService")
-
-        local p = game:GetService("Players").LocalPlayer
-        
-         
-        
-        ts:Teleport(game.PlaceId, p)
-    end
-})
 
 --PlayerSpeed
 
@@ -251,7 +248,7 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
     Title = "Seed",
     Description = "",
     Default = 16,
-    Min = 16,
+    Min = 0,
     Max = 500,
     Rounding = 0,
     Callback = function(Value)
@@ -260,7 +257,7 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
 })
 
 Slider:OnChanged(function(Value)
-    
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
 end)
 
 Slider:SetValue(16)
@@ -275,7 +272,7 @@ local Slider = Tabs.Settings:AddSlider("Slider", {
     Max = 500,
     Rounding = 0,
     Callback = function(Value)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
     end
 })
 
