@@ -19,6 +19,7 @@ local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "rbxassetid://11433532654" }),
     Team = Window:AddTab({ Title = "Change Team", Icon = "rbxassetid://12966835146" }),
     Shop = Window:AddTab({ Title = "Shop(Coming Soon..)", Icon = "rbxassetid://11419702273" }),
+    Build = Window:AddTab({ Title = "AutoBuild(Coming Soon..)", Icon = "rbxassetid://12967712847" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "rbxassetid://11293977610" })
 }
 
@@ -201,6 +202,15 @@ Tabs.Main:AddButton({
     end
 })
 
+--Shop
+
+
+--AutoBuild
+
+Tabs.Build:AddParagraph({
+    Title = "Beta",
+    Content = "Request : GoldBox 300"
+})
 
 --Setting
 
