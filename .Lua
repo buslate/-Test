@@ -26,12 +26,15 @@ local Options = Fluent.Options
 do
     Fluent:Notify({
         Title = "Notification",
-        Content = "Wellcome",
-        SubContent = "Cave Hub NO.1", -- Optional
-        Duration = 5 -- Set to nil to make the notification not disappear
+        Content = "Cave Hub NO.1",
+        SubContent = "", -- Optional
+        Duration = 10 -- Set to nil to make the notification not disappear
     })
 end
 
+--Tp To White
+wait(.5)
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-56.871666, -9.69999123, -613.46759, -0.650971651, 7.14956316e-09, -0.759102046, -6.33533492e-09, 1, 1.4851345e-08, 0.759102046, 1.44769698e-08, -0.650971651)
 --autoFarm
 
 local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "AutoFarm", Default = false })
