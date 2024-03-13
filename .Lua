@@ -5,7 +5,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Cave Hub 0.0.5",
+    Title = "Cave Hub 0.0.6",
     SubTitle = "by ! Chuck : chuck_007.",
     TabWidth = 160,
     Size = UDim2.fromOffset(510, 390),
@@ -183,6 +183,24 @@ end
 end)
 
 Options.MyToggle:SetValue(false)
+
+Tabs.Main:AddButton({
+    Title = "Reset Character(if Bug)",
+    Description = "Reset Character",
+    Callback = function()
+        local function forceResetAction(player)
+            -- Check if player and Humanoid exist
+            if player and player.Character and player.Character:FindFirstChild("Humanoid") then
+              player.Character.Humanoid.Health = 0
+            end
+          end
+          
+          -- Example usage (call this function from another script)
+          -- Replace "game.Players.LocalPlayer" with the target player object if needed
+          forceResetAction(game.Players.LocalPlayer)
+    end
+})
+
 
 --Setting
 
