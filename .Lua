@@ -26,8 +26,8 @@ local Options = Fluent.Options
 do
     Fluent:Notify({
         Title = "Notification",
-        Content = "This is a notification",
-        SubContent = "SubContent", -- Optional
+        Content = "Wellcome",
+        SubContent = "Cave Hub NO.1", -- Optional
         Duration = 5 -- Set to nil to make the notification not disappear
     })
 end
@@ -463,7 +463,7 @@ Tabs.Team:AddButton({
 do
     local ToggleUI = game.CoreGui:FindFirstChild("toggle") 
     if ToggleUI then 
-        toggle:Destroy()
+        ToggleUI:Destroy()
     end
 end
 local toggle = Instance.new("ScreenGui")
