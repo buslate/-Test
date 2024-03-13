@@ -86,7 +86,7 @@ while _G.Farm do
                     end)
                 end
             teleportToNextTarget() -- Start the loop
-            wait(43)
+            wait(45)
             workspace:WaitForChild("ClaimRiverResultsGold"):FireServer()
             end
 end
@@ -167,8 +167,8 @@ local Toggle = Tab:CreateToggle({
             Noclip.Name = "Noclip"
             Noclip.CanCollide = true
             Noclip.Anchored = true
-            Noclip.Transparency = 1
-            Noclip.Size = Vector3.new(45, -5, 45)
+            Noclip.Transparency = 0
+            Noclip.Size = Vector3.new(50, -5, 50)
         function Noclip()
             game:GetService("Workspace"):FindFirstChild("Noclip").CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0)
         end
@@ -208,24 +208,73 @@ local Button = Tab:CreateButton({
     },
     Interact = '',
     Callback = function()
-        local Http = game:GetService("HttpService")
-        local TPS = game:GetService("TeleportService")
-        local Api = "https://games.roblox.com/v1/games/"
-        
-        local _place = game.PlaceId
-        local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
-        function ListServers(cursor)
-           local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
-           return Http:JSONDecode(Raw)
+        Time = 0.5 -- seconds
+        repeat wait() until game:IsLoaded()
+        wait(Time)
+        local PlaceID = game.PlaceId
+        local AllIDs = {}
+        local foundAnything = ""
+        local actualHour = os.date("!*t").hour
+        local Deleted = false
+        function TPReturner()
+           local Site;
+           if foundAnything == "" then
+               Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+           else
+               Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+           end
+           local ID = ""
+           if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+               foundAnything = Site.nextPageCursor
+           end
+           local num = 0;
+           for i,v in pairs(Site.data) do
+               local Possible = true
+               ID = tostring(v.id)
+               if tonumber(v.maxPlayers) > tonumber(v.playing) then
+                   for _,Existing in pairs(AllIDs) do
+                       if num ~= 0 then
+                           if ID == tostring(Existing) then
+                               Possible = false
+                           end
+                       else
+                           if tonumber(actualHour) ~= tonumber(Existing) then
+                               local delFile = pcall(function()
+                                   delfile("NotSameServers.json")
+                                   AllIDs = {}
+                                   table.insert(AllIDs, actualHour)
+                               end)
+                           end
+                       end
+                       num = num + 1
+                   end
+                   if Possible == true then
+                       table.insert(AllIDs, ID)
+                       wait()
+                       pcall(function()
+                           writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+                           wait()
+                           game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                       end)
+                       wait(4)
+                   end
+               end
+           end
         end
-        
-        local Server, Next; repeat
-           local Servers = ListServers(Next)
-           Server = Servers.data[1]
-           Next = Servers.nextPageCursor
-        until Server
-        
-        TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
+         
+        function Teleport()
+           while wait() do
+               pcall(function()
+                   TPReturner()
+                   if foundAnything ~= "" then
+                       TPReturner()
+                   end
+               end)
+           end
+        end
+         
+        -- If you'd like to use a script before server hopping (Like a Automatic Chest collector you can put the Teleport() after it collected everything.
+        Teleport()
     end,
 })
 local Slider = Tab:CreateSlider({
