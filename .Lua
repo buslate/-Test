@@ -95,7 +95,7 @@ Options.MyToggle:SetValue(false)
 
 local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "FastFarm", Default = false })
 
-Toggle:OnChanged(function()
+Toggle:OnChanged(function(Value)
     _G.FastFarm = Value
     if _G.FastFarm then
     while _G.FastFarm do
