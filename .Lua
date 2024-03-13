@@ -28,7 +28,7 @@ do
         Title = "Notification",
         Content = "Wellcome",
         SubContent = "Cave Hub NO.1", -- Optional
-        Duration = 5 -- Set to nil to make the notification not disappear
+        Duration = 10 -- Set to nil to make the notification not disappear
     })
 end
 
