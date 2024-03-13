@@ -18,6 +18,7 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "rbxassetid://11433532654" }),
     Team = Window:AddTab({ Title = "Change Team", Icon = "rbxassetid://12966835146" }),
+    Shop = Window:AddTab({ Title = "Shop(Coming Soon..)", Icon = "rbxassetid://11419702273" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "rbxassetid://11293977610" })
 }
 
