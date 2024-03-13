@@ -167,7 +167,7 @@ local Toggle = Tab:CreateToggle({
             Noclip.Name = "Noclip"
             Noclip.CanCollide = true
             Noclip.Anchored = true
-            Noclip.Transparency = 0
+            Noclip.Transparency = 1
             Noclip.Size = Vector3.new(50, -5, 50)
         function Noclip()
             game:GetService("Workspace"):FindFirstChild("Noclip").CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0)
