@@ -10,6 +10,8 @@ UPDATE 0.0.5 : Add FpsBoots🚀,FixBug
 
 UPDATE 0.0.6 : Add ResetCharacter(if Bug)
 
+UPDATE 0.0.7 : Add Tab Shop
+
 ![Screenshot 2024-03-13 150613](https://github.com/buslate/Build-A-Boat-For-Treasure/assets/113223653/387f928c-7716-4c1c-a194-8ae89da5c14e)
 
 Script : loadstring(game:HttpGet(("https://raw.githubusercontent.com/buslate/Build-A-Boat-For-Treasure/main/.Lua"), true))()
