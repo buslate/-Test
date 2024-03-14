@@ -5,7 +5,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Cave Hub 0.0.7",
+    Title = "Cave Hub 0.0.8",
     SubTitle = "by ! Chuck : chuck_007.",
     TabWidth = 160,
     Size = UDim2.fromOffset(510, 390),
@@ -125,7 +125,7 @@ Toggle:OnChanged(function(Value)
                     end
                 
                     local distance = (targetPosition - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                    local speed = 2000 -- Adjust speed as desired
+                    local speed = 2800 -- Adjust speed as desired
                     local duration = distance / speed
                 
                     local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear)
@@ -148,7 +148,7 @@ Toggle:OnChanged(function(Value)
                     end
                 teleportToNextTarget() -- Start the loop
                 workspace:WaitForChild("ClaimRiverResultsGold"):FireServer()
-                wait(25)
+                wait(30)
                 end
     end
 end)
@@ -268,7 +268,7 @@ Tabs.Shop:AddButton({
 })
 Tabs.Shop:AddButton({
     Title = "Buy Property Tool",
-    Description = "",
+    Description = "🪛",
     Callback = function()
         Window:Dialog({
             Title = "Warning",
