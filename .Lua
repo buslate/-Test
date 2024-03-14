@@ -268,7 +268,7 @@ Tabs.Shop:AddButton({
 })
 Tabs.Shop:AddButton({
     Title = "Buy Property Tool",
-    Description = "🪛",
+    Description = "",
     Callback = function()
         Window:Dialog({
             Title = "Warning",
