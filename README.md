@@ -12,6 +12,8 @@ UPDATE 0.0.6 : Add ResetCharacter(if Bug)
 
 UPDATE 0.0.7 : Add Tab Shop
 
+UPDATE 0.0.8 : Improved Speed AutoFarm GoldBox
+
 ![Screenshot 2024-03-14 141258](https://github.com/buslate/Build-A-Boat-For-Treasure/assets/113223653/02c3d936-0b77-4510-afe5-abe7d5cf423f)
 
 Script : loadstring(game:HttpGet(("https://raw.githubusercontent.com/buslate/Build-A-Boat-For-Treasure/main/.Lua"), true))()
