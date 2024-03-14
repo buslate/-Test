@@ -5,7 +5,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Cave Hub 0.0.6",
+    Title = "Cave Hub 0.0.7",
     SubTitle = "by ! Chuck : chuck_007.",
     TabWidth = 160,
     Size = UDim2.fromOffset(510, 390),
@@ -18,7 +18,7 @@ local Window = Fluent:CreateWindow({
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "rbxassetid://11433532654" }),
     Team = Window:AddTab({ Title = "Change Team", Icon = "rbxassetid://12966835146" }),
-    Shop = Window:AddTab({ Title = "Shop(Coming Soon..)", Icon = "rbxassetid://11419702273" }),
+    Shop = Window:AddTab({ Title = "Shop", Icon = "rbxassetid://11419702273" }),
     Build = Window:AddTab({ Title = "AutoBuild(Coming Soon..)", Icon = "rbxassetid://12967712847" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "rbxassetid://11293977610" })
 }
@@ -203,7 +203,161 @@ Tabs.Main:AddButton({
 })
 
 --Shop
+Tabs.Shop:AddParagraph({
+    Title = "Accessories Tool",
+    Content = ""
+})
 
+Tabs.Shop:AddButton({
+    Title = "Buy Painting Tool",
+    Description = "🖌️",
+    Callback = function()
+        Window:Dialog({
+            Title = "Warning",
+            Content = "it 1500",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        local args = {
+                            [1] = "Painting Tool",
+                            [2] = 1
+                        }
+                        workspace:WaitForChild("ItemBoughtFromShop"):InvokeServer(unpack(args))
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function()
+                        print("Cancelled the dialog.")
+                    end
+                }
+            }
+        })
+    end
+})
+Tabs.Shop:AddButton({
+    Title = "Buy Binding Tool",
+    Description = "🔧",
+    Callback = function()
+        Window:Dialog({
+            Title = "Warning",
+            Content = "it 2000",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        local args = {
+                            [1] = "Binding Tool",
+                            [2] = 1
+                        }
+                        
+                        workspace:WaitForChild("ItemBoughtFromShop"):InvokeServer(unpack(args))
+                        
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function()
+                        print("Cancelled the dialog.")
+                    end
+                }
+            }
+        })
+    end
+})
+Tabs.Shop:AddButton({
+    Title = "Buy Property Tool",
+    Description = "🪛",
+    Callback = function()
+        Window:Dialog({
+            Title = "Warning",
+            Content = "it 2500",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        local args = {
+                            [1] = "Property Tool",
+                            [2] = 1
+                        }
+                        
+                        workspace:WaitForChild("ItemBoughtFromShop"):InvokeServer(unpack(args))
+                        
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function()
+                        print("Cancelled the dialog.")
+                    end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Shop:AddButton({
+    Title = "Buy Scaling Tool",
+    Description = "📐",
+    Callback = function()
+        Window:Dialog({
+            Title = "Warning",
+            Content = "it 5000",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        local args = {
+                            [1] = "Scaling Tool",
+                            [2] = 1
+                        }
+                        
+                        workspace:WaitForChild("ItemBoughtFromShop"):InvokeServer(unpack(args))
+                        
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function()
+                        print("Cancelled the dialog.")
+                    end
+                }
+            }
+        })
+    end
+})
+
+Tabs.Shop:AddButton({
+    Title = "Buy Trowel Tool",
+    Description = "",
+    Callback = function()
+        Window:Dialog({
+            Title = "Warning",
+            Content = "it 7500",
+            Buttons = {
+                {
+                    Title = "Confirm",
+                    Callback = function()
+                        local args = {
+                            [1] = "Trowel Tool",
+                            [2] = 1
+                        }
+                        
+                        workspace:WaitForChild("ItemBoughtFromShop"):InvokeServer(unpack(args))
+                        
+                    end
+                },
+                {
+                    Title = "Cancel",
+                    Callback = function()
+                        print("Cancelled the dialog.")
+                    end
+                }
+            }
+        })
+    end
+})
 
 --AutoBuild
 
@@ -340,9 +494,9 @@ InterfaceManager:BuildInterfaceSection(Tabs.Settings)
 Window:SelectTab(1)
 
 Fluent:Notify({
-    Title = "Fluent",
+    Title = "Notification",
     Content = "The script has been loaded.",
-    Duration = 8
+    Duration = 5
 })
 
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
@@ -577,7 +731,7 @@ Toggle:OnChanged(function(Value)
 
     while _G.antiAFK do wait()
 
-    game:GetService'VirtualUser':Button1Down(Vector2.new(686, 352))
+    game:GetService'VirtualUser':Button1Down(Vector2.new(788, 547))
     
 end
 end)
