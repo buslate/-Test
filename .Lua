@@ -147,8 +147,8 @@ Toggle:OnChanged(function(Value)
                         end)
                     end
                 teleportToNextTarget() -- Start the loop
-                workspace:WaitForChild("ClaimRiverResultsGold"):FireServer()
                 wait(30)
+                workspace:WaitForChild("ClaimRiverResultsGold"):FireServer()
                 end
     end
 end)
