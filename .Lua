@@ -207,7 +207,7 @@ Tabs.Shop:AddParagraph({
 
 Tabs.Shop:AddButton({
     Title = "Buy Painting Tool",
-    Description = "🖌️",
+    Description = "",
     Callback = function()
         Window:Dialog({
             Title = "Warning",
@@ -235,7 +235,7 @@ Tabs.Shop:AddButton({
 })
 Tabs.Shop:AddButton({
     Title = "Buy Binding Tool",
-    Description = "🔧",
+    Description = "",
     Callback = function()
         Window:Dialog({
             Title = "Warning",
@@ -265,7 +265,7 @@ Tabs.Shop:AddButton({
 })
 Tabs.Shop:AddButton({
     Title = "Buy Property Tool",
-    Description = "🪛",
+    Description = "",
     Callback = function()
         Window:Dialog({
             Title = "Warning",
@@ -296,7 +296,7 @@ Tabs.Shop:AddButton({
 
 Tabs.Shop:AddButton({
     Title = "Buy Scaling Tool",
-    Description = "📐",
+    Description = "",
     Callback = function()
         Window:Dialog({
             Title = "Warning",
