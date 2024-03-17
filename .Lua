@@ -582,7 +582,7 @@ end)
 
 --Click To Tp
 
-Tabs.Main:AddButton({
+Tabs.Team:AddButton({
     Title = "Click To Go",
     Description = "",
     Callback = function()
