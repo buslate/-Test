@@ -5,7 +5,7 @@ local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/d
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
 
 local Window = Fluent:CreateWindow({
-    Title = "Cave Hub 0.0.8",
+    Title = "Cave Hub 0.0.9",
     SubTitle = "by ! Chuck : chuck_007.",
     TabWidth = 160,
     Size = UDim2.fromOffset(510, 390),
@@ -88,8 +88,8 @@ Toggle:OnChanged(function(Value)
                         end)
                     end
                 teleportToNextTarget() -- Start the loop
+                workspace:WaitForChild("ClaimRiverResultsGold"):FireServer()
                 wait(50)
-workspace:WaitForChild("ClaimRiverResultsGold"):FireServer()
                 end
     end
 end)
@@ -546,180 +546,50 @@ Slider:SetValue(60)
 
 --Team
 
-Tabs.Team:AddButton({
-    Title = "Black",
-    Description = "Black",
+Tabs.Team:AddParagraph({
+    Title = "Teleport To Team Color",
+    Content = ""
+})
+
+function TeleportToColor(color)
+    if color == "Black" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-585.89892578125, -9.701964378356934, -58.53709030151367)
+    elseif color == "Blue" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(478.3410339355469, -9.7019624710083, 289.38494873046875)
+    elseif color == "Green" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-585.833251953125, -9.701966285705566, 303.4530944824219)
+    elseif color == "Pink" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(478.5516052246094, -9.701963424682617, 636.7717895507812)
+    elseif color == "Red" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(478.5126037597656, -9.701966285705566, -75.66240692138672)
+    elseif color == "White" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-60.072845458984375, -9.701964378356934, -602.3859252929688)
+    elseif color == "Yellow" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-585.8826293945312, -9.701966285705566, 651.19970703125)
+    end
+end
+
+local Dropdown = Tabs.Team:AddDropdown("Dropdown", {
+    Title = "Select Team",
+    Values = {"Black", "Blue", "Green", "Pink", "Red", "White", "Yellow"},
+    Multi = false,
+    Default = 1,
+})
+
+Dropdown:OnChanged(function(Value)
+    color = Value
+end)
+
+--Click To Tp
+
+Tabs.Main:AddButton({
+    Title = "Click To Go",
+    Description = "",
     Callback = function()
-        Window:Dialog({
-            Title = "Warning",
-            Content = "Are You Sure?",
-            Buttons = {
-                {
-                    Title = "Confirm",
-                    Callback = function()
-                        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-586.367065, -9.69999123, -80.7059784, -0.441471756, -4.50235085e-08, -0.89727515, -4.04081604e-08, 1, -3.02966683e-08, 0.89727515, 2.28821158e-08, -0.441471756)
-                    end
-                },
-                {
-                    Title = "Cancel",
-                    Callback = function()
-                        print("Cancelled the dialog.")
-                    end
-                }
-            }
-        })
+    TeleportToColor(Dropdown.Value)
     end
 })
 
-Tabs.Team:AddButton({
-    Title = "Blue",
-    Description = "Blue",
-    Callback = function()
-        Window:Dialog({
-            Title = "Warning",
-            Content = "Are You Sure?",
-            Buttons = {
-                {
-                    Title = "Confirm",
-                    Callback = function()
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(463.472961, -9.70000648, 249.021667, -0.881579995, -2.93551548e-08, -0.472034693, 1.34240992e-08, 1, -8.72596289e-08, 0.472034693, -8.32629823e-08, -0.881579995)
-                    end
-                },
-                {
-                    Title = "Cancel",
-                    Callback = function()
-                        print("Cancelled the dialog.")
-                    end
-                }
-            }
-        })
-    end
-})
-
-Tabs.Team:AddButton({
-    Title = "Green",
-    Description = "Green",
-    Callback = function()
-        Window:Dialog({
-            Title = "Warning",
-            Content = "Are You Sure?",
-            Buttons = {
-                {
-                    Title = "Confirm",
-                    Callback = function()
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-588.69104, -9.69999123, 251.263138, -0.120647937, 6.20875937e-08, -0.992695332, 5.21933918e-09, 1, 6.19101215e-08, 0.992695332, 2.28811459e-09, -0.120647937)
-                    end
-                },
-                {
-                    Title = "Cancel",
-                    Callback = function()
-                        print("Cancelled the dialog.")
-                    end
-                }
-            }
-        })
-    end
-})
-
-Tabs.Team:AddButton({
-    Title = "Pink",
-    Description = "Pink",
-    Callback = function()
-        Window:Dialog({
-            Title = "Warning",
-            Content = "Are You Sure?",
-            Buttons = {
-                {
-                    Title = "Confirm",
-                    Callback = function()
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(478.472778, -9.69999123, 658.649902, 0.95848316, 1.851752e-08, -0.285149187, -2.59490047e-08, 1, -2.22836434e-08, 0.285149187, 2.87578334e-08, 0.95848316)
-                    end
-                },
-                {
-                    Title = "Cancel",
-                    Callback = function()
-                        print("Cancelled the dialog.")
-                    end
-                }
-            }
-        })
-    end
-})
-
-Tabs.Team:AddButton({
-    Title = "Red",
-    Description = "Red",
-    Callback = function()
-        Window:Dialog({
-            Title = "Warning",
-            Content = "Are You Sure?",
-            Buttons = {
-                {
-                    Title = "Confirm",
-                    Callback = function()
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(484.3924255371094, -9.699991226196289, -54.02690124511719)
-                    end
-                },
-                {
-                    Title = "Cancel",
-                    Callback = function()
-                        print("Cancelled the dialog.")
-                    end
-                }
-            }
-        })
-    end
-})
-
-Tabs.Team:AddButton({
-    Title = "White",
-    Description = "White",
-    Callback = function()
-        Window:Dialog({
-            Title = "Warning",
-            Content = "Are You Sure?",
-            Buttons = {
-                {
-                    Title = "Confirm",
-                    Callback = function()
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-56.871666, -9.69999123, -613.46759, -0.650971651, 7.14956316e-09, -0.759102046, -6.33533492e-09, 1, 1.4851345e-08, 0.759102046, 1.44769698e-08, -0.650971651)
-                    end
-                },
-                {
-                    Title = "Cancel",
-                    Callback = function()
-                        print("Cancelled the dialog.")
-                    end
-                }
-            }
-        })
-    end
-})
-
-Tabs.Team:AddButton({
-    Title = "Yellow",
-    Description = "Yellow",
-    Callback = function()
-        Window:Dialog({
-            Title = "Warning",
-            Content = "Are You Sure?",
-            Buttons = {
-                {
-                    Title = "Confirm",
-                    Callback = function()
-                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-587.519165, -9.6998167, 682.534851, 0.0162683316, 1.44063153e-08, -0.999867678, 5.27892796e-09, 1, 1.44941126e-08, 0.999867678, -5.51402435e-09, 0.0162683316)
-                    end
-                },
-                {
-                    Title = "Cancel",
-                    Callback = function()
-                        print("Cancelled the dialog.")
-                    end
-                }
-            }
-        })
-    end
-})
 
 
 --anti afk
