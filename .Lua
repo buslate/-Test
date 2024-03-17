@@ -34,9 +34,6 @@ do
     })
 end
 
---Tp To White
-wait(.5)
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-56.871666, -9.69999123, -613.46759, -0.650971651, 7.14956316e-09, -0.759102046, -6.33533492e-09, 1, 1.4851345e-08, 0.759102046, 1.44769698e-08, -0.650971651)
 --autoFarm
 
 local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "AutoFarm", Default = false })
@@ -372,7 +369,7 @@ Tabs.Build:AddParagraph({
 
 Tabs.Settings:AddButton({
     Title = "Rejoin Server",
-    Description = "Rejoin",
+    Description = "",
     Callback = function()
         local ts = game:GetService("TeleportService")
 
@@ -545,12 +542,6 @@ end)
 Slider:SetValue(60)
 
 --Team
-
-Tabs.Team:AddParagraph({
-    Title = "Teleport To Team Color",
-    Content = ""
-})
-
 function TeleportToColor(color)
     if color == "Black" then
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-585.89892578125, -9.701964378356934, -58.53709030151367)
@@ -569,6 +560,13 @@ function TeleportToColor(color)
     end
 end
 
+
+Tabs.Team:AddParagraph({
+    Title = "Teleport To Team Color",
+    Content = ""
+})
+
+
 local Dropdown = Tabs.Team:AddDropdown("Dropdown", {
     Title = "Select Team",
     Values = {"Black", "Blue", "Green", "Pink", "Red", "White", "Yellow"},
@@ -580,10 +578,8 @@ Dropdown:OnChanged(function(Value)
     color = Value
 end)
 
---Click To Tp
-
 Tabs.Team:AddButton({
-    Title = "Click To Go",
+    Title = "Click To TP",
     Description = "",
     Callback = function()
     TeleportToColor(Dropdown.Value)
