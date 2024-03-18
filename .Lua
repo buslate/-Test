@@ -6,7 +6,7 @@ local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.
 
 local Window = Fluent:CreateWindow({
     Title = "Cave Hub 0.0.9",
-    SubTitle = "by ! Chuck : chuck_007.",
+    SubTitle = "Build A Boat For Treasure",
     TabWidth = 160,
     Size = UDim2.fromOffset(610, 490),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
