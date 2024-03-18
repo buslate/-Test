@@ -8,9 +8,9 @@ local Window = Fluent:CreateWindow({
     Title = "Cave Hub 0.0.9",
     SubTitle = "by ! Chuck : chuck_007.",
     TabWidth = 160,
-    Size = UDim2.fromOffset(510, 390),
+    Size = UDim2.fromOffset(610, 490),
     Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
-    Theme = "Aqua",
+    Theme = "Darker",
     MinimizeKey = Enum.KeyCode.Home -- Used when theres no MinimizeKeybind
 })
 
@@ -19,7 +19,6 @@ local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "rbxassetid://11433532654" }),
     Team = Window:AddTab({ Title = "Change Team", Icon = "rbxassetid://12966835146" }),
     Shop = Window:AddTab({ Title = "Shop", Icon = "rbxassetid://11419702273" }),
-    Build = Window:AddTab({ Title = "AutoBuild(Coming Soon..)", Icon = "rbxassetid://12967712847" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "rbxassetid://11293977610" })
 }
 
@@ -34,64 +33,101 @@ do
     })
 end
 
+
+Tabs.Main:AddParagraph({
+    Title = "AutoFarm",
+    Content = "🧑🏻‍🌾"
+})
+
+
 --autoFarm
+
+--slider speed
+local Slider = Tabs.Main:AddSlider("Slider", {
+    Title = "Speed Tween(Recommend: 390)",
+    Description = "",
+    Default = 390,
+    Min = 50,
+    Max = 1000,
+    Rounding = 0,
+})
+
+Slider:OnChanged(function(Value)
+    -- Do nothing here since we are directly accessing the value when needed
+end)
+
+Slider:SetValue(390)
 
 local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "AutoFarm", Default = false })
 
 Toggle:OnChanged(function(Value)
     _G.Farm = Value
     if _G.Farm then
-    while _G.Farm do
+        while _G.Farm do
+            local targetPositions = {
+                Vector3.new(-49.6203003, 52.1805964, 668.363831),
+                Vector3.new(-49.0358887, 44.6002235, 1283.07361),
+                Vector3.new(-54.21815872192383, 61.31955337524414, 1362.96435546875),
+                Vector3.new(-51.05792999267578, 58.07366180419922, 2137.30810546875),
+                Vector3.new(-56.77909469604492, 53.95687484741211, 2907.669921875),
+                Vector3.new(-60.69740676879883, 57.617332458496094, 3674.162841796875),
+                Vector3.new(-54.92622375488281, 55.52228546142578, 4441.00341796875),
+                Vector3.new(-56.729576110839844, 55.55670928955078, 5212.1337890625),
+                Vector3.new(-56.330936431884766, 67.23455810546875, 5981.82958984375),
+                Vector3.new(-54.3404541015625, 44.643558502197266, 6759.51904296875),
+                Vector3.new(-52.860652923583984, 40.938262939453125, 7537.98193359375),
+                Vector3.new(-39.3001823425293, 62.53487014770508, 8301.2998046875),
+                Vector3.new(-45.933799743652344, 67.70562744140625, 8816.8271484375),
+                Vector3.new(-55.7633247, -359.302094, 9496.33789)
+                -- Add more target positions as needed
+            }
 
-        local targetPositions = {
-                    Vector3.new(-49.6203003, 52.1805964, 668.363831, -0.999993563, -0.0002226332, 0.00357921072, 7.38511075e-12, 0.998071074, 0.0620817766, -0.00358612812, 0.062081378, -0.998064637),
-                    Vector3.new(-49.0358887, 44.6002235, 1283.07361, -0.999757111, -0.00103060459, 0.0220147371, 5.74352198e-11, 0.998906016, 0.0467630923, -0.0220388472, 0.0467517339, -0.998663366),
-                    Vector3.new(-52.2924042, 52.8626137, 8810.67676, -0.999800801, -0.00402260385, -0.0195484515, -1.07728368e-10, 0.979477584, -0.201553062, 0.0199580379, -0.201512918, -0.979282498),
-                    Vector3.new(-55.7633247, -359.302094, 9496.33789, 0.0546190403, 6.63240058e-08, 0.998507261, 7.08811356e-08, 1, -7.03004019e-08, -0.998507261, 7.46150661e-08, 0.0546190403)
-                    -- Add more target positions as needed
-                }
-                
-                local currentTargetIndex = 1
-                
-                local function teleportToNextTarget()
-                    local targetPosition = targetPositions[currentTargetIndex]
-                
-                    -- Validate target position
-                    if not targetPosition then
-                        warn("Invalid target position at index", currentTargetIndex)
-                        return
-                    end
-                
-                    local distance = (targetPosition - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                    local speed = 390 -- Adjust speed as desired
-                    local duration = distance / speed
-                
-                    local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear)
-                    local tween = game:GetService("TweenService"):Create(
-                        game.Players.LocalPlayer.Character.HumanoidRootPart,
-                        tweenInfo,
-                        {CFrame = CFrame.new(targetPosition)}
-                    )
-                    tween:Play()
-                
-                    tween.Completed:Connect(function()
-                        currentTargetIndex += 1
-                        teleportToNextTarget()
-                            game.Players.LocalPlayer.Character.Humanoid.Died:Connect(function()
-                                wait(0) -- Wait for death animation to finish
-                                currentTargetIndex = 1 -- Reset index to teleport back to the first position
-                                teleportToNextTarget() -- Restart the loop
-                            end)
-                        end)
-                    end
-                teleportToNextTarget() -- Start the loop
-                workspace:WaitForChild("ClaimRiverResultsGold"):FireServer()
-                wait(50)
+            local currentTargetIndex = 1
+
+            local function teleportToNextTarget()
+                local targetPosition = targetPositions[currentTargetIndex]
+
+                -- Validate target position
+                if not targetPosition then
+                    warn("Invalid target position at index", currentTargetIndex)
+                    return
                 end
+
+                local distance = (targetPosition - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                local speed = Slider.Value -- ดึงค่า speed จาก Slider
+                local duration = distance / speed
+
+                local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear)
+                local tween = game:GetService("TweenService"):Create(
+                    game.Players.LocalPlayer.Character.HumanoidRootPart,
+                    tweenInfo,
+                    {CFrame = CFrame.new(targetPosition)}
+                )
+                tween:Play()
+
+                tween.Completed:Connect(function()
+                    currentTargetIndex += 1
+                    if currentTargetIndex <= #targetPositions then
+                        teleportToNextTarget()
+                    else
+                        print("Reached all target positions!")
+                        -- Optional: Perform actions when all targets are reached
+                    end
+                end)
+            end
+            teleportToNextTarget()
+            workspace:WaitForChild("ClaimRiverResultsGold"):FireServer()
+            wait(50)
+        end
     end
 end)
 
 Options.MyToggle:SetValue(false)
+
+
+
+
+
 
 --autoFarm Box
 
@@ -168,7 +204,7 @@ Toggle:OnChanged(function(Value)
         Noclip.CanCollide = true
         Noclip.Anchored = true
         Noclip.Transparency = 1
-        Noclip.Size = Vector3.new(50, -5, 50)
+        Noclip.Size = Vector3.new(50, 1, 50)
     function Noclip()
         game:GetService("Workspace"):FindFirstChild("Noclip").CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(0,-4,0)
     end
@@ -181,6 +217,9 @@ end
 end)
 
 Options.MyToggle:SetValue(false)
+
+
+
 
 Tabs.Main:AddButton({
     Title = "Reset Character(if Bug)",
@@ -356,13 +395,6 @@ Tabs.Shop:AddButton({
     end
 })
 
---AutoBuild
-
-Tabs.Build:AddParagraph({
-    Title = "Beta",
-    Content = "Request : GoldBox 300"
-})
-
 --Setting
 
 --rejoin
@@ -380,6 +412,40 @@ Tabs.Settings:AddButton({
         ts:Teleport(game.PlaceId, p)
     end
 })
+
+
+--hopServerto low
+
+
+Tabs.Settings:AddButton({
+    Title = "Hop To Low Server",
+    Description = "",
+    Callback = function()
+        local Http = game:GetService("HttpService")
+        local TPS = game:GetService("TeleportService")
+        local Api = "https://games.roblox.com/v1/games/"
+        
+        local _place = game.PlaceId
+        local _servers = Api.._place.."/servers/Public?sortOrder=Asc&limit=100"
+        function ListServers(cursor)
+           local Raw = game:HttpGet(_servers .. ((cursor and "&cursor="..cursor) or ""))
+           return Http:JSONDecode(Raw)
+        end
+        
+        local Server, Next; repeat
+           local Servers = ListServers(Next)
+           Server = Servers.data[1]
+           Next = Servers.nextPageCursor
+        until Server
+        
+        TPS:TeleportToPlaceInstance(_place,Server.id,game.Players.LocalPlayer)
+    end
+})
+
+
+
+
+
 
 --FPS boot
 
@@ -487,7 +553,6 @@ SaveManager:SetFolder("FluentScriptHub/specific-game")
 
 InterfaceManager:BuildInterfaceSection(Tabs.Settings)
 
-
 Window:SelectTab(1)
 
 Fluent:Notify({
@@ -526,8 +591,8 @@ Slider:SetValue(16)
 local Slider = Tabs.Settings:AddSlider("Slider", {
     Title = "Player JumpPower",
     Description = "",
-    Default = 60,
-    Min = 60,
+    Default = 50,
+    Min = 0,
     Max = 500,
     Rounding = 0,
     Callback = function(Value)
@@ -539,7 +604,7 @@ Slider:OnChanged(function(Value)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = Value
 end)
 
-Slider:SetValue(60)
+Slider:SetValue(50)
 
 --Team
 function TeleportToColor(color)
@@ -637,3 +702,4 @@ end)
 
 UICorner.CornerRadius = UDim.new(0, 10)
 UICorner.Parent = ImageButton
+
