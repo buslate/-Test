@@ -18,4 +18,4 @@ UPDATE 0.0.9 : Improved Change Team
 
 ![Screenshot 2024-03-14 141258](https://github.com/buslate/Build-A-Boat-For-Treasure/assets/113223653/02c3d936-0b77-4510-afe5-abe7d5cf423f)
 
-Script : loadstring(game:HttpGet(("https://raw.githubusercontent.com/buslate/Build-A-Boat-For-Treasure/main/.Lua"), true))()
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/buslate/Cave-Hub/main/lua."), true))()
