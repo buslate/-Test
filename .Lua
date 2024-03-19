@@ -14,7 +14,7 @@ local Window = Fluent:CreateWindow({
     SubTitle = "Build A Boat For Treasure",
     TabWidth = 160,
     Size = UDim2.fromOffset(610, 490),
-    Acrylic = true, -- The blur may be detectable, setting this to false disables blur entirely
+    Acrylic = false, -- The blur may be detectable, setting this to false disables blur entirely
     Theme = "Darker",
     MinimizeKey = Enum.KeyCode.Home -- Used when theres no MinimizeKeybind
 })
