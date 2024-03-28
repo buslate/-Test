@@ -58,7 +58,7 @@ end)
 
 Slider:SetValue(390)
 
-local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "AutoFarm", Default = false })
+local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "AutoFarm(Money)", Default = false })
 
 Toggle:OnChanged(function(Value)
     _G.Farm = Value
@@ -77,8 +77,7 @@ Toggle:OnChanged(function(Value)
                 Vector3.new(-54.3404541015625, 44.643558502197266, 6759.51904296875),
                 Vector3.new(-52.860652923583984, 40.938262939453125, 7537.98193359375),
                 Vector3.new(-39.3001823425293, 62.53487014770508, 8301.2998046875),
-                Vector3.new(-45.933799743652344, 67.70562744140625, 8816.8271484375),
-                Vector3.new(-55.7633247, -359.302094, 9496.33789)
+                Vector3.new(-45.933799743652344, 67.70562744140625, 8816.8271484375)
                 -- Add more target positions as needed
             }
 
@@ -117,13 +116,94 @@ Toggle:OnChanged(function(Value)
             end
             teleportToNextTarget()
             workspace:WaitForChild("ClaimRiverResultsGold"):FireServer()
-            wait(50)
+            wait(25)
+            local function forceResetAction(player)
+               -- Check if player and Humanoid exist
+               if player and player.Character and player.Character:FindFirstChild("Humanoid") then
+                 player.Character.Humanoid.Health = 0
+               end
+             end
+             
+             -- Example usage (call this function from another script)
+             -- Replace "game.Players.LocalPlayer" with the target player object if needed
+             forceResetAction(game.Players.LocalPlayer)
+            wait(7)
         end
     end
 end)
 
 Options.MyToggle:SetValue(false)
 
+
+--autoFarm money,gold
+
+
+
+local Toggle = Tabs.Main:AddToggle("MyToggle", {Title = "AutoFarm(Gold,Box)", Default = false })
+
+Toggle:OnChanged(function(Value)
+    _G.Farm2 = Value
+    if _G.Farm2 then
+        while _G.Farm2 do
+            local targetPositions = {
+                Vector3.new(-49.6203003, 52.1805964, 668.363831),
+                Vector3.new(-49.0358887, 44.6002235, 1283.07361),
+                Vector3.new(-54.21815872192383, 61.31955337524414, 1362.96435546875),
+                Vector3.new(-51.05792999267578, 58.07366180419922, 2137.30810546875),
+                Vector3.new(-56.77909469604492, 53.95687484741211, 2907.669921875),
+                Vector3.new(-60.69740676879883, 57.617332458496094, 3674.162841796875),
+                Vector3.new(-54.92622375488281, 55.52228546142578, 4441.00341796875),
+                Vector3.new(-56.729576110839844, 55.55670928955078, 5212.1337890625),
+                Vector3.new(-56.330936431884766, 67.23455810546875, 5981.82958984375),
+                Vector3.new(-54.3404541015625, 44.643558502197266, 6759.51904296875),
+                Vector3.new(-52.860652923583984, 40.938262939453125, 7537.98193359375),
+                Vector3.new(-39.3001823425293, 62.53487014770508, 8301.2998046875),
+                Vector3.new(-45.933799743652344, 67.70562744140625, 8816.8271484375),
+                Vector3.new(-55.7633247, -359.302094, 9496.33789, 0.0546190403, 6.63240058e-08, 0.998507261, 7.08811356e-08, 1, -7.03004019e-08, -0.998507261, 7.46150661e-08, 0.0546190403)
+                -- Add more target positions as needed
+            }
+
+            local currentTargetIndex = 1
+
+            local function teleportToNextTarget()
+                local targetPosition = targetPositions[currentTargetIndex]
+
+                -- Validate target position
+                if not targetPosition then
+                    warn("Invalid target position at index", currentTargetIndex)
+                    return
+                end
+
+                local distance = (targetPosition - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+                local speed = Slider.Value -- ดึงค่า speed จาก Slider
+                local duration = distance / speed
+
+                local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear)
+                local tween = game:GetService("TweenService"):Create(
+                    game.Players.LocalPlayer.Character.HumanoidRootPart,
+                    tweenInfo,
+                    {CFrame = CFrame.new(targetPosition)}
+                )
+                tween:Play()
+
+                tween.Completed:Connect(function()
+                    currentTargetIndex += 1
+                    if currentTargetIndex <= #targetPositions then
+                        teleportToNextTarget()
+                    else
+                        print("Reached all target positions!")
+                        -- Optional: Perform actions when all targets are reached
+                    end
+                end)
+            end
+            teleportToNextTarget()
+            workspace:WaitForChild("ClaimRiverResultsGold"):FireServer()
+            wait(45)
+        end
+    end
+end)
+
+Options.MyToggle:SetValue(false)
 
 
 
@@ -158,7 +238,7 @@ Toggle:OnChanged(function(Value)
                     end
                 
                     local distance = (targetPosition - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-                    local speed = 2800 -- Adjust speed as desired
+                    local speed = 2900 -- Adjust speed as desired
                     local duration = distance / speed
                 
                     local tweenInfo = TweenInfo.new(duration, Enum.EasingStyle.Linear)
@@ -702,4 +782,3 @@ end)
 
 UICorner.CornerRadius = UDim.new(0, 10)
 UICorner.Parent = ImageButton
-
