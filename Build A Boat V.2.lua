@@ -26,7 +26,7 @@ local Options = Fluent.Options
 do
     Fluent:Notify({
         Title = "Notification",
-        Content = "Download MON.Pro",
+        Content = "Download CaveHub",
         SubContent = "", -- Optional
         Duration = 5 -- Set to nil to make the notification not disappear
     })
