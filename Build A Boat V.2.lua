@@ -41,9 +41,27 @@ do
     })
 end
 
+--------------------------------------------[[Tween]]--------------------------------------------
+
+function Tween1(P)
+    Distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+    if Distance <= 250 then
+        speed = 500
+    else
+        speed = 390
+    end
+    game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/speed, Enum.EasingStyle.Linear),{CFrame = P}):Play()
+end
+
+function Tween2(P)
+    Distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+    speed = 3500
+    game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/speed, Enum.EasingStyle.Linear),{CFrame = P}):Play()
+end 
+
 --------------------------------------------------[[AutoFarm]]--------------------------------------------------
 
-local section = Tabs.Main:AddSection("AutoFarm")
+local section = Tabs.Main:AddSection("● AutoFarm")
 
 --[[AutoFarmMoney]]--
 
@@ -78,7 +96,9 @@ _G.AutoFarmGoldBoxMoney = Value
         Tween1(CFrame.new(-48.3229675, 34.0048294, 8803.8125, -0.999902487, 0.00068842771, 0.0139483986, -1.12289102e-10, 0.998784244, -0.0492953248, -0.0139653767, -0.0492905192, -0.99868685))
         wait(21)
         Tween1(CFrame.new(-55.5586624, -359.302094, 9495.74512, -0.931606233, 5.3427005e-09, -0.363469124, 2.83643757e-08, 1, -5.80014294e-08, 0.363469124, -6.43440643e-08, -0.931606233))
-        wait(3)
+        wait(.5)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55.5586624, -359.302094, 9495.74512, -0.931606233, 5.3427005e-09, -0.363469124, 2.83643757e-08, 1, -5.80014294e-08, 0.363469124, -6.43440643e-08, -0.931606233)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55.5586624, -359.302094, 9495.74512, -0.931606233, 5.3427005e-09, -0.363469124, 2.83643757e-08, 1, -5.80014294e-08, 0.363469124, -6.43440643e-08, -0.931606233)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55.5586624, -359.302094, 9495.74512, -0.931606233, 5.3427005e-09, -0.363469124, 2.83643757e-08, 1, -5.80014294e-08, 0.363469124, -6.43440643e-08, -0.931606233)
         wait(20)
         end
@@ -106,7 +126,7 @@ Options.MyToggle:SetValue(false)
 
 --[[ResetCharacter]]--
 
-local section = Tabs.Main:AddSection("if Bug")
+local section = Tabs.Main:AddSection("● IFBUG")
 
 Tabs.Main:AddButton({
     Title = "ResetCharacter",
@@ -118,7 +138,7 @@ Tabs.Main:AddButton({
 
 --[[FUN]]--
 
-local section = Tabs.Main:AddSection("Fun")
+local section = Tabs.Main:AddSection("● Fun")
 local Input = Tabs.Main:AddInput("Input", {
     Title = "SpeedSpin",
     Placeholder = "Number",
@@ -151,7 +171,7 @@ Options.MyToggle:SetValue(false)
 
 -------------------------------------------------[[Misc]]--------------------------------------------
 
-local section = Tabs.Misc:AddSection("Quest")
+local section = Tabs.Misc:AddSection("● Quest")
 Tabs.Misc:AddParagraph({
     Title = "Request Target Quest",
     Content = "You in Blue Team Only"
@@ -172,7 +192,7 @@ _G.TargetQuest = Value
     end
 end)
 Options.MyToggle:SetValue(false)
-local section = Tabs.Misc:AddSection("TeleportTeam")
+local section = Tabs.Misc:AddSection("● TeleportTeam")
 
 local Dropdown = Tabs.Misc:AddDropdown("Dropdown", {
     Title = "SelectTeam",
@@ -199,7 +219,7 @@ Tabs.Misc:AddButton({
 
 -------------------------------------------------[[Shop]]--------------------------------------------
 
-local section = Tabs.Shop:AddSection("Accessories Tool")
+local section = Tabs.Shop:AddSection("● Accessories Tool")
 
 Tabs.Shop:AddButton({
     Title = "Painting Tool",
@@ -236,24 +256,6 @@ Tabs.Shop:AddButton({
         workspace:WaitForChild("ItemBoughtFromShop"):InvokeServer("Trowel Tool",1)
     end
 })
-
---------------------------------------------[[Tween]]--------------------------------------------
-
-function Tween1(P)
-    Distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-    if Distance <= 350 then
-        speed = 800
-    else
-        speed = 390
-    end
-    game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/speed, Enum.EasingStyle.Linear),{CFrame = P}):Play()
-end
-
-function Tween2(P)
-    Distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-    speed = 3500
-    game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/speed, Enum.EasingStyle.Linear),{CFrame = P}):Play()
-end 
 
 --------------------------------------------[[Noclip]]--------------------------------------------
 
@@ -491,3 +493,4 @@ UICorner.CornerRadius = UDim.new(0, 10)
 UICorner.Parent = ImageButton
 
 Window:SelectTab(1)
+
