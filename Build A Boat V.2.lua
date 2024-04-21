@@ -152,7 +152,7 @@ Options.MyToggle:SetValue(false)
 -------------------------------------------------[[Change Team]]--------------------------------------------
 
 local section = Tabs.Misc:AddSection("Quest")
-Tabs.Mics:AddParagraph({
+Tabs.Misc:AddParagraph({
     Title = "Request Target Quest",
     Content = "You in Blue Team Only"
 })
