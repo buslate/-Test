@@ -149,7 +149,7 @@ end)
 
 Options.MyToggle:SetValue(false)
 
--------------------------------------------------[[Change Team]]--------------------------------------------
+-------------------------------------------------[[Misc]]--------------------------------------------
 
 local section = Tabs.Misc:AddSection("Quest")
 Tabs.Misc:AddParagraph({
