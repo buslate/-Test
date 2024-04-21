@@ -78,7 +78,9 @@ _G.AutoFarmGoldBoxMoney = Value
         Tween1(CFrame.new(-48.3229675, 34.0048294, 8803.8125, -0.999902487, 0.00068842771, 0.0139483986, -1.12289102e-10, 0.998784244, -0.0492953248, -0.0139653767, -0.0492905192, -0.99868685))
         wait(21)
         Tween1(CFrame.new(-55.5586624, -359.302094, 9495.74512, -0.931606233, 5.3427005e-09, -0.363469124, 2.83643757e-08, 1, -5.80014294e-08, 0.363469124, -6.43440643e-08, -0.931606233))
-        wait(3)
+        wait(.5)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55.5586624, -359.302094, 9495.74512, -0.931606233, 5.3427005e-09, -0.363469124, 2.83643757e-08, 1, -5.80014294e-08, 0.363469124, -6.43440643e-08, -0.931606233)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55.5586624, -359.302094, 9495.74512, -0.931606233, 5.3427005e-09, -0.363469124, 2.83643757e-08, 1, -5.80014294e-08, 0.363469124, -6.43440643e-08, -0.931606233)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-55.5586624, -359.302094, 9495.74512, -0.931606233, 5.3427005e-09, -0.363469124, 2.83643757e-08, 1, -5.80014294e-08, 0.363469124, -6.43440643e-08, -0.931606233)
         wait(20)
         end
@@ -236,12 +238,16 @@ Tabs.Shop:AddButton({
         workspace:WaitForChild("ItemBoughtFromShop"):InvokeServer("Trowel Tool",1)
     end
 })
---------------------------------------------[[Tween]]--------------------------------------------
 
+--------------------------------------------[[Tween]]--------------------------------------------
 
 function Tween1(P)
     Distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
-    speed = 390
+    if Distance <= 250 then
+        speed = 500
+    else
+        speed = 390
+    end
     game:GetService("TweenService"):Create(game.Players.LocalPlayer.Character.HumanoidRootPart,TweenInfo.new(Distance/speed, Enum.EasingStyle.Linear),{CFrame = P}):Play()
 end
 
