@@ -262,8 +262,9 @@ spawn(function()
                     local Noclip = Instance.new("BodyVelocity")
                     Noclip.Name = "BodyClip"
                     Noclip.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
-                    Noclip.MaxForce = Vector3.new(100000,100000,100000)
+                    Noclip.MaxForce = Vector3.new(1000000,1000000,1000000)
                     Noclip.Velocity = Vector3.new(0,0,0)
+                    Noclip.CanCollide = false
                 end
             else
                 game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:FindFirstChild("BodyClip"):Destroy()
