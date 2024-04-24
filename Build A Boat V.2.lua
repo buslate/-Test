@@ -61,7 +61,7 @@ end
 
 --------------------------------------------------[[AutoFarm]]--------------------------------------------------
 
-local section = Tabs.Main:AddSection("● AutoFarm")
+local section = Tabs.Main:AddSection("AutoFarm")
 
 --[[AutoFarmMoney]]--
 
@@ -123,9 +123,6 @@ end)
 Options.MyToggle:SetValue(false)
 
 --[[ResetCharacter]]--
-
-local section = Tabs.Main:AddSection("● IFBUG")
-
 Tabs.Main:AddButton({
     Title = "ResetCharacter",
     Description = "",
@@ -136,7 +133,7 @@ Tabs.Main:AddButton({
 
 --[[FUN]]--
 
-local section = Tabs.Main:AddSection("● Fun")
+local section = Tabs.Main:AddSection("Fun")
 local Input = Tabs.Main:AddInput("Input", {
     Title = "SpeedSpin",
     Placeholder = "Number",
@@ -169,7 +166,7 @@ Options.MyToggle:SetValue(false)
 
 -------------------------------------------------[[Misc]]--------------------------------------------
 
-local section = Tabs.Misc:AddSection("● Quest")
+local section = Tabs.Misc:AddSection("Quest")
 Tabs.Misc:AddParagraph({
     Title = "Request Target Quest",
     Content = "You in Blue Team Only"
@@ -190,7 +187,7 @@ _G.TargetQuest = Value
     end
 end)
 Options.MyToggle:SetValue(false)
-local section = Tabs.Misc:AddSection("● TeleportTeam")
+local section = Tabs.Misc:AddSection("TeleportTeam")
 
 local Dropdown = Tabs.Misc:AddDropdown("Dropdown", {
     Title = "SelectTeam",
@@ -217,7 +214,7 @@ Tabs.Misc:AddButton({
 
 -------------------------------------------------[[Shop]]--------------------------------------------
 
-local section = Tabs.Shop:AddSection("● Accessories Tool")
+local section = Tabs.Shop:AddSection("Accessories Tool")
 
 Tabs.Shop:AddButton({
     Title = "Painting Tool",
@@ -491,4 +488,3 @@ UICorner.CornerRadius = UDim.new(0, 10)
 UICorner.Parent = ImageButton
 
 Window:SelectTab(1)
-
